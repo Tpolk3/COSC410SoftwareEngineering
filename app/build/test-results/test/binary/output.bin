@@ -1,126 +1,0 @@
-#P1 rolled [1, 2, 3, 4, 5, 6, 2+2].
-&0: which pile would you like to place
-&0: which pile would you like to place
-&0: which pile would you like to place
-&2: which pile would you like to place
-&2: which pile would you like to place
-Pile 1 is: 1 -- Pile 2 is: 5
-Which pile would you like?
-6P1 gained $6: Black Box (chose 00022 out of 6|00022).
-eThe minigame Black Box at Casino 1 has the following update: P2 split as 6|00022 and P1 chose 00022.
-&0: which pile would you like to place
-&0: which pile would you like to place
-&0: which pile would you like to place
-&2: which pile would you like to place
-&2: which pile would you like to place
-Pile 1 is: 1 -- Pile 2 is: 5
-Which pile would you like?
-2P1 gained $6: Black Box (chose 6 out of 6|00022).
-aThe minigame Black Box at Casino 1 has the following update: P2 split as 6|00022 and P1 chose 6.
-What is your choice?
-What casino will you place?
-]The minigame Block It at Casino 1 has the following update: P1 has placed 2 Dice in casino 1
-What is your choice?
-What casino will you place?
-]The minigame Block It at Casino 1 has the following update: P1 has placed 1 Dice in casino 1
-What is your choice?
-What casino will you place?
-]The minigame Block It at Casino 1 has the following update: P1 has placed 3 Dice in casino 1
-/..Fifty Fifty prize is: 1 chip and marker is: 1
-/.$Whould you like to take the payout?
-/0P2 You rolled [2+2].
-/0Which casino will you place?
-/1'P2 You rolled [1, 2, 3, 4, 5, 6, 2+2].
-/1Which casino will you place?
-32L----------------------------      PLAYERS      ----------------------------
-32# player : money  dice  DICE  chips
-32#     P1 :     0     6     1      0
-32#     P2 :     0     6     1      0
-32
-32L----------------------------      CASINOS      ----------------------------
-32  #   $$   $     P1   P2   
-32 [1]   3   1 :    
-32( Jackpot - Roll doubles or 7 to win $3.
-32 [2]   6   2 :    
-32
-34Round 1 has ended.
-34)P1 gained $3: from Casino 1 for Round 1.
-34)P1 gained $6: from Casino 2 for Round 1.
-34)P2 gained $2: from Casino 2 for Round 1.
-35%Casino 1 added the minigame Jackpot.
-35&P1 gained 2 chips: Chips for Round 1.
-35&P2 gained 2 chips: Chips for Round 1.
-35Round 1 has started.
-36FThe game has started. It will consist of 1 round(s) and has 2 player.
-36CEach player has 6 regular and 1 large dice with 2 chips per round.
->@*Fifty Fifty prize is: $0 and marker is: 4
->@$Whould you like to take the payout?
->@P1 gained $0: Fifty Fifty
->A*Fifty Fifty prize is: $6 and marker is: 4
->A$Whould you like to take the payout?
->AP1 gained $6: Fifty Fifty
->B*Fifty Fifty prize is: $0 and marker is: 9
->B$Whould you like to take the payout?
->BOThe minigame Fifty Fifty at Casino 1 has the following update: new marker is 5
->B.Fifty Fifty prize is: 1 chip and marker is: 5
->B$Whould you like to take the payout?
->BP1 gained 1 chip: Fifty Fifty
->C*Fifty Fifty prize is: $0 and marker is: 5
->C$Whould you like to take the payout?
->COThe minigame Fifty Fifty at Casino 1 has the following update: new marker is 9
->C.Fifty Fifty prize is: 1 chip and marker is: 9
->C$Whould you like to take the payout?
->CP1 gained 1 chip: Fifty Fifty
->D*Fifty Fifty prize is: $0 and marker is: 5
->D$Whould you like to take the payout?
->DcThe minigame Fifty Fifty at Casino 1 has the following update: P1 guessed lower and the roll was 9
->DP1 gained $0: Fifty Fifty
->E*Fifty Fifty prize is: $0 and marker is: 9
->E$Whould you like to take the payout?
->EdThe minigame Fifty Fifty at Casino 1 has the following update: P1 guessed higher and the roll was 5
->EP1 gained $0: Fifty Fifty
-KJ'P1 You rolled [1, 2, 3, 4, 5, 6, 1+1].
-KJWhich casino will you place?
-KJP1 placed [4].
-KJCasino 4 gained [4] from P1.
-KLiThe minigame Jackpot at Casino 0 has the following update: [2,6] was rolled. Potential payout is now $4.
-KN'P1 You rolled [1, 2, 3, 4, 5, 6, 1+1].
-KNWhich casino will you place?
-KN%P1 used a chip and has 1 chips left.
-TXP1 gained $10: High Five
-_a&P1 gained $3: Jackpot ( [1,1] -> $3).
-_a|The minigame Jackpot at Casino 0 has the following update: [1,1] was rolled, and payout was $3. Potential payout is now $3.
-_biThe minigame Jackpot at Casino 0 has the following update: [1,2] was rolled. Potential payout is now $4.
-_ciThe minigame Jackpot at Casino 0 has the following update: [1,2] was rolled. Potential payout is now $8.
-_d&P1 gained $8: Jackpot ( [3,4] -> $8).
-_d|The minigame Jackpot at Casino 0 has the following update: [3,4] was rolled, and payout was $8. Potential payout is now $3.
-giWhat is your choice?
-giWhat is your choice?
-giFThe minigame Jackpot has the following update: Guess 0 was incorrect.
-giP1 gained $4: Lucky Punch
-gjWhat is your choice?
-gjWhat is your choice?
-gjFThe minigame Jackpot has the following update: Guess 2 was incorrect.
-gjP1 gained $3: Lucky Punch
-gkWhat is your choice?
-gkWhat is your choice?
-gkDThe minigame Jackpot has the following update: Guess 1 was correct.
-gkP1 gained $0: Lucky Punch
-glWhat is your choice?
-glWhat is your choice?
-glFThe minigame Jackpot has the following update: Guess 2 was incorrect.
-glP1 gained $3: Lucky Punch
-gmWhat is your choice?
-gmWhat is your choice?
-gmFThe minigame Jackpot has the following update: Guess 2 was incorrect.
-gmP1 gained 2 chips: Lucky Punch
-poFThe game has started. It will consist of 3 round(s) and has 3 player.
-poCEach player has 7 regular and 1 large dice with 2 chips per round.
-pqFThe game has started. It will consist of 3 round(s) and has 3 player.
-pqCEach player has 7 regular and 1 large dice with 2 chips per round.
-wy8P1 gained 0 chips: Pay Day (has presence at 0 casinos).
-wyYThe minigame Pay Day at Casino 1 has the following update: P1 has presence at 0 casinos.
-wz8P1 gained 0 chips: Pay Day (has presence at 0 casinos).
-wzYThe minigame Pay Day at Casino 1 has the following update: P1 has presence at 0 casinos.
-w{3P1 gained $3: Pay Day (has presence at 3 casinos).
-w{YThe minigame Pay Day at Casino 1 has the following update: P1 has presence at 3 casinos.
