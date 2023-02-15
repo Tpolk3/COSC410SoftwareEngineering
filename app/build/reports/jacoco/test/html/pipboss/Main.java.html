@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package pipboss;
+
+import java.util.*;
+
+<span class="fc" id="L5">public class Main {</span>
+    private static int rounds, stdDice, chips, lrgDice, plyHuman, plyAI;
+    private static List&lt;Player&gt; players;
+    private static Game game;
+    private static Scanner sc;
+    private static List&lt;String&gt; miniGameList;
+    private static List&lt;MiniGame&gt; miniGames;
+    private static List&lt;ConsoleView&gt; consoleView;
+    private static List&lt;Controller&gt; controller;
+    public static void main(String[] args) {
+<span class="nc" id="L15">        phase0();</span>
+<span class="nc" id="L16">    }</span>
+
+    public static void phase0()    {
+<span class="nc" id="L19">        rounds = 1;</span>
+<span class="nc" id="L20">        stdDice = 7;</span>
+<span class="nc" id="L21">        lrgDice = 0;</span>
+<span class="nc" id="L22">        chips = 0;</span>
+<span class="nc" id="L23">        plyHuman = 1;</span>
+<span class="nc" id="L24">        plyAI = 0;</span>
+<span class="nc" id="L25">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L26">        setUp();</span>
+<span class="nc" id="L27">        playRound();</span>
+<span class="nc" id="L28">    }</span>
+
+    public static void phase1()    {
+<span class="nc" id="L31">        rounds = 1;</span>
+<span class="nc" id="L32">        stdDice = 7;</span>
+<span class="nc" id="L33">        lrgDice = 0;</span>
+<span class="nc" id="L34">        chips = 2;</span>
+<span class="nc" id="L35">        plyHuman = 1;</span>
+<span class="nc" id="L36">        plyAI = 0;</span>
+<span class="nc" id="L37">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L38">        setUp();</span>
+<span class="nc" id="L39">        playRound();</span>
+<span class="nc" id="L40">    }</span>
+
+    public static void phase2()    {
+<span class="nc" id="L43">        rounds = 1;</span>
+<span class="nc" id="L44">        stdDice = 7;</span>
+<span class="nc" id="L45">        lrgDice = 1;</span>
+<span class="nc" id="L46">        chips = 2;</span>
+<span class="nc" id="L47">        plyHuman = 1;</span>
+<span class="nc" id="L48">        plyAI = 0;</span>
+<span class="nc" id="L49">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L50">        setUp();</span>
+<span class="nc" id="L51">        playRound();</span>
+<span class="nc" id="L52">    }</span>
+
+    public static void phase3()    {
+<span class="nc" id="L55">        rounds = 1;</span>
+<span class="nc" id="L56">        stdDice = 7;</span>
+<span class="nc" id="L57">        lrgDice = 1;</span>
+<span class="nc" id="L58">        chips = 2;</span>
+<span class="nc" id="L59">        plyHuman = 1;</span>
+<span class="nc" id="L60">        plyAI = 2;</span>
+<span class="nc" id="L61">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L62">        setUp();</span>
+<span class="nc" id="L63">        playRound();</span>
+<span class="nc" id="L64">    }</span>
+
+    public static void phase4()    {
+<span class="nc" id="L67">        rounds = 3;</span>
+<span class="nc" id="L68">        stdDice = 7;</span>
+<span class="nc" id="L69">        lrgDice = 1;</span>
+<span class="nc" id="L70">        chips = 2;</span>
+<span class="nc" id="L71">        plyHuman = 1;</span>
+<span class="nc" id="L72">        plyAI = 2;</span>
+<span class="nc" id="L73">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L74">        setUp();</span>
+<span class="nc" id="L75">        playRound();</span>
+<span class="nc" id="L76">    }</span>
+
+    public static void phase5()    {
+<span class="nc" id="L79">        rounds = 3;</span>
+<span class="nc" id="L80">        stdDice = 7;</span>
+<span class="nc" id="L81">        lrgDice = 1;</span>
+<span class="nc" id="L82">        chips = 2;</span>
+<span class="nc" id="L83">        plyHuman = 1;</span>
+<span class="nc" id="L84">        plyAI = 2;</span>
+<span class="nc" id="L85">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L86">        miniGameList.add(&quot;Jackpot&quot;);</span>
+<span class="nc" id="L87">        setUp();</span>
+<span class="nc" id="L88">        playRound();</span>
+<span class="nc" id="L89">    }</span>
+
+    public static void phase6()    {
+<span class="nc" id="L92">        rounds = 3;</span>
+<span class="nc" id="L93">        stdDice = 7;</span>
+<span class="nc" id="L94">        lrgDice = 1;</span>
+<span class="nc" id="L95">        chips = 2;</span>
+<span class="nc" id="L96">        plyHuman = 1;</span>
+<span class="nc" id="L97">        plyAI = 2;</span>
+<span class="nc" id="L98">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L99">        miniGameList.add(&quot;Jackpot&quot;);</span>
+<span class="nc" id="L100">        miniGameList.add(&quot;Pay Day&quot;);</span>
+<span class="nc" id="L101">        setUp();</span>
+<span class="nc" id="L102">        playRound();</span>
+<span class="nc" id="L103">    }</span>
+
+    public static void phase7()    {
+<span class="nc" id="L106">        rounds = 3;</span>
+<span class="nc" id="L107">        stdDice = 7;</span>
+<span class="nc" id="L108">        lrgDice = 1;</span>
+<span class="nc" id="L109">        chips = 2;</span>
+<span class="nc" id="L110">        plyHuman = 1;</span>
+<span class="nc" id="L111">        plyAI = 2;</span>
+<span class="nc" id="L112">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L113">        miniGameList.add(&quot;Jackpot&quot;);</span>
+<span class="nc" id="L114">        miniGameList.add(&quot;Pay Day&quot;);</span>
+<span class="nc" id="L115">        miniGameList.add(&quot;Fifty Fifty&quot;);</span>
+<span class="nc" id="L116">        setUp();</span>
+<span class="nc" id="L117">        playRound();</span>
+<span class="nc" id="L118">    }</span>
+
+    public static void phase8()    {
+<span class="nc" id="L121">        rounds = 3;</span>
+<span class="nc" id="L122">        stdDice = 7;</span>
+<span class="nc" id="L123">        lrgDice = 1;</span>
+<span class="nc" id="L124">        chips = 2;</span>
+<span class="nc" id="L125">        plyHuman = 1;</span>
+<span class="nc" id="L126">        plyAI = 2;</span>
+<span class="nc" id="L127">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L128">        miniGameList.add(&quot;Pay Day&quot;);</span>
+<span class="nc" id="L129">        miniGameList.add(&quot;Fifty Fifty&quot;);</span>
+<span class="nc" id="L130">        miniGameList.add(&quot;Lucky Punch&quot;);</span>
+<span class="nc" id="L131">        setUp();</span>
+<span class="nc" id="L132">        playRound();</span>
+<span class="nc" id="L133">    }</span>
+
+    public static void phase9()    {
+<span class="nc" id="L136">        rounds = 3;</span>
+<span class="nc" id="L137">        stdDice = 7;</span>
+<span class="nc" id="L138">        lrgDice = 1;</span>
+<span class="nc" id="L139">        chips = 2;</span>
+<span class="nc" id="L140">        plyHuman = 1;</span>
+<span class="nc" id="L141">        plyAI = 2;</span>
+<span class="nc" id="L142">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L143">        miniGameList.add(&quot;Fifty Fifty&quot;);</span>
+<span class="nc" id="L144">        miniGameList.add(&quot;Lucky Punch&quot;);</span>
+<span class="nc" id="L145">        miniGameList.add(&quot;High Five&quot;);</span>
+<span class="nc" id="L146">        setUp();</span>
+<span class="nc" id="L147">        playRound();</span>
+<span class="nc" id="L148">    }</span>
+
+    public static void phase10()    {
+<span class="nc" id="L151">        rounds = 3;</span>
+<span class="nc" id="L152">        stdDice = 7;</span>
+<span class="nc" id="L153">        lrgDice = 1;</span>
+<span class="nc" id="L154">        chips = 2;</span>
+<span class="nc" id="L155">        plyHuman = 1;</span>
+<span class="nc" id="L156">        plyAI = 2;</span>
+<span class="nc" id="L157">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L158">        miniGameList.add(&quot;Lucky Punch&quot;);</span>
+<span class="nc" id="L159">        miniGameList.add(&quot;High Five&quot;);</span>
+<span class="nc" id="L160">        miniGameList.add(&quot;Black Box&quot;);</span>
+<span class="nc" id="L161">        setUp();</span>
+<span class="nc" id="L162">        playRound();</span>
+<span class="nc" id="L163">    }</span>
+
+    public static void phase11()    {
+<span class="nc" id="L166">        rounds = 3;</span>
+<span class="nc" id="L167">        stdDice = 7;</span>
+<span class="nc" id="L168">        lrgDice = 1;</span>
+<span class="nc" id="L169">        chips = 2;</span>
+<span class="nc" id="L170">        plyHuman = 1;</span>
+<span class="nc" id="L171">        plyAI = 2;</span>
+<span class="nc" id="L172">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L173">        miniGameList.add(&quot;High Five&quot;);</span>
+<span class="nc" id="L174">        miniGameList.add(&quot;Black Box&quot;);</span>
+<span class="nc" id="L175">        miniGameList.add(&quot;Block It&quot;);</span>
+<span class="nc" id="L176">        setUp();</span>
+<span class="nc" id="L177">        playRound();</span>
+<span class="nc" id="L178">    }</span>
+
+    public static void testInit(int r, int sD, int lD, int c, int pH, int pA, List&lt;String&gt; mGList)   {
+<span class="fc" id="L181">        rounds = r;</span>
+<span class="fc" id="L182">        stdDice = sD;</span>
+<span class="fc" id="L183">        lrgDice = lD;</span>
+<span class="fc" id="L184">        chips = c;</span>
+<span class="fc" id="L185">        plyHuman = pH;</span>
+<span class="fc" id="L186">        plyAI = pA;</span>
+<span class="fc" id="L187">        miniGameList = new ArrayList&lt;String&gt;();</span>
+<span class="fc bfc" id="L188" title="All 2 branches covered.">        for(int i=0; i&lt;mGList.size(); i++)  {</span>
+<span class="fc" id="L189">            miniGameList.add(mGList.get(i));</span>
+        }
+<span class="fc" id="L191">        setUp();</span>
+<span class="fc" id="L192">    }</span>
+
+    public static void setUp() {
+<span class="fc" id="L195">        sc = new Scanner(System.in);</span>
+<span class="fc" id="L196">        consoleView = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L197">        controller = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L199">        players = new ArrayList&lt;Player&gt;();</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">        for(int i=0; i&lt;plyHuman; i++)   {</span>
+<span class="fc" id="L201">            players.add(new Player(i+1));</span>
+<span class="fc" id="L202">            players.get(i).setDice(stdDice, lrgDice);</span>
+<span class="fc" id="L203">            consoleView.add(new ConsoleView());</span>
+<span class="fc" id="L204">            controller.add(new ConsoleController(sc, players.get(i).getPID()));</span>
+        }
+<span class="fc bfc" id="L206" title="All 2 branches covered.">        for(int i=0; i&lt;plyAI; i++)   {</span>
+<span class="fc" id="L207">            players.add(new Player(plyHuman + i +1));</span>
+<span class="fc" id="L208">            players.get(i+plyHuman).setDice(stdDice, lrgDice);</span>
+<span class="fc" id="L209">            controller.add(new AiController(players.get(i+plyHuman).getPID()));</span>
+        }
+
+<span class="fc" id="L212">        game = new Game(players, miniGameList, consoleView, controller);</span>
+<span class="fc" id="L213">        game.setCasino();</span>
+
+<span class="fc bfc" id="L215" title="All 2 branches covered.">        for (ConsoleView v : consoleView) {</span>
+<span class="fc" id="L216">            v.gameStarted(rounds, (plyHuman+plyAI), stdDice, lrgDice, chips);</span>
+<span class="fc" id="L217">        }</span>
+
+<span class="fc" id="L219">        miniGames = game.getMiniGames();</span>
+<span class="fc" id="L220">    }</span>
+
+    public static void resetRound() {
+<span class="fc bfc" id="L223" title="All 2 branches covered.">        for(int i=0; i &lt;players.size(); i++)    {</span>
+<span class="fc" id="L224">            players.get(i).setDice(stdDice, lrgDice);</span>
+<span class="fc" id="L225">            game.resetCasino();</span>
+        }
+<span class="fc" id="L227">    }</span>
+
+    public static void playRound()   {
+<span class="nc bnc" id="L230" title="All 2 branches missed.">        for(int i=1; i&lt;=rounds; i++)    {</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            for(int j=0; j&lt;(plyHuman+plyAI); j++) {</span>
+<span class="nc" id="L232">                players.get(j).addChips(chips);</span>
+             }
+
+<span class="nc bnc" id="L235" title="All 2 branches missed.">             for (ConsoleView v : consoleView) {</span>
+<span class="nc" id="L236">                v.startRound(players, miniGames, chips, i);</span>
+<span class="nc" id="L237">             }</span>
+             
+        
+<span class="nc bnc" id="L240" title="All 2 branches missed.">             while(!game.roundEnd())    {</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">                for (ConsoleView v : consoleView) {</span>
+<span class="nc" id="L242">                    v.displayBoard(players, game.getCasinos(), game.getMiniGames());</span>
+<span class="nc" id="L243">                 }</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">                for(int j=0; j&lt;players.size();j++) {</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">                    if(players.get(j).getPDice() != 0)    {</span>
+<span class="nc" id="L246">                        game.playTurn(j);</span>
+                    }
+                }
+            }
+
+<span class="nc bnc" id="L251" title="All 2 branches missed.">            for (ConsoleView v : consoleView) {</span>
+<span class="nc" id="L252">                v.roundEnd(players, controller, game.getCasinos(), game.getMiniGames(), i);</span>
+<span class="nc" id="L253">            }</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (i == rounds) {</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">                for (ConsoleView v : consoleView) {</span>
+<span class="nc" id="L256">                    v.endGame(players, game.getCasinos(), game.getMiniGames());</span>
+<span class="nc" id="L257">                 }</span>
+            } else  {
+<span class="nc" id="L259">                resetRound();</span>
+            }
+
+        }
+<span class="nc" id="L263">        sc.close();</span>
+<span class="nc" id="L264">    }</span>
+    public static Game getGame() {
+<span class="fc" id="L266">        return game;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

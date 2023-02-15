@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Player.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">Player.java</span></div><h1>Player.java</h1><pre class="source lang-java linenums">package pipboss;
+
+import java.util.*;
+
+
+public class Player {
+    private int pid;
+    private int money;
+    private int chips;
+    private Random rng;
+    private ArrayList&lt;Die&gt; dList;
+
+    public Player(int pid) {
+<span class="fc" id="L14">        this(pid, new Random());</span>
+<span class="fc" id="L15">    }</span>
+
+<span class="fc" id="L17">    public Player(int pid, Random rng) {</span>
+<span class="fc" id="L18">        this.pid = pid;</span>
+<span class="fc" id="L19">        money = 0;</span>
+<span class="fc" id="L20">        chips = 0;</span>
+<span class="fc" id="L21">        this.rng = rng;</span>
+<span class="fc" id="L22">        dList = new ArrayList&lt;Die&gt;();</span>
+<span class="fc" id="L23">    }</span>
+
+    public void setDice(int stdDice, int lrgDice)    {
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        for(int i=0; i&lt;stdDice; i++)   {</span>
+<span class="fc" id="L27">            dList.add(new Die(pid, rng));</span>
+        }
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for(int i=0; i&lt;lrgDice; i++)   {</span>
+<span class="fc" id="L30">            dList.add(new Die(pid, true, rng ));</span>
+        }
+<span class="fc" id="L32">    }</span>
+    
+    public int getPID() {
+<span class="fc" id="L35">        return pid;</span>
+    }
+
+    public int getMoney()   {
+<span class="fc" id="L39">        return money;</span>
+    }
+
+    public Random getRandom()   {
+<span class="nc" id="L43">        return rng;</span>
+    }
+
+    public void addMoney(int money)   {
+<span class="fc" id="L47">        this.money = this.money + money;</span>
+<span class="fc" id="L48">    }</span>
+
+    public List&lt;IntBoolPair&gt; rollDice() {
+<span class="fc" id="L51">        List&lt;IntBoolPair&gt; rolls = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        for (int i = 0; i &lt; dList.size(); i++) {</span>
+<span class="fc" id="L53">            dList.get(i).roll();</span>
+<span class="fc" id="L54">            rolls.add(new IntBoolPair(dList.get(i).getValue(), dList.get(i).isBig()));</span>
+        }
+<span class="fc" id="L56">        return rolls;</span>
+    }
+
+    public int getChips()    {
+<span class="fc" id="L60">        return chips;</span>
+    }
+
+    public void useChip()  {
+<span class="fc" id="L64">        chips = chips-1;</span>
+<span class="fc" id="L65">    }</span>
+
+    public void setChips(int chips)  {
+<span class="fc" id="L68">        this.chips = chips;</span>
+<span class="fc" id="L69">    }</span>
+
+    public void addChips(int chips)  {
+<span class="fc" id="L72">        this.chips = this.chips + chips;</span>
+<span class="fc" id="L73">    }</span>
+
+    public String toString()  {
+<span class="fc" id="L76">        int normDice = howManyNormDice();</span>
+<span class="fc" id="L77">        Formatter playF = new Formatter();</span>
+<span class="fc" id="L78">        playF.format(&quot;%9s %5s %5s %5s %6s%n&quot;,</span>
+<span class="fc" id="L79">        &quot; P&quot; + getPID() + &quot; :&quot;, getMoney(), normDice, (dList.size()-normDice), getChips());</span>
+<span class="fc" id="L80">        String retString = playF.toString();</span>
+<span class="fc" id="L81">        playF.close();</span>
+<span class="fc" id="L82">        return retString;</span>
+    }
+
+    private int howManyNormDice()   {
+<span class="fc" id="L86">        int count=0;</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        for (int i = 0; i &lt; dList.size(); i++) {</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            if(!dList.get(i).isBig())   {</span>
+<span class="fc" id="L89">                count++;</span>
+            }
+        }
+<span class="fc" id="L92">        return count; </span>
+    }
+
+    public boolean isAI()  {
+<span class="fc" id="L96">        return false;</span>
+    }
+
+    public ArrayList&lt;Die&gt; playDice(int picked)  {
+<span class="fc" id="L100">        ArrayList&lt;Die&gt; temp = new ArrayList&lt;Die&gt;();</span>
+<span class="fc" id="L101">        int resLen = dList.size();</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for(int i=0; i&lt;resLen;i++)  {</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">            if(picked == dList.get(i).getValue())  {</span>
+<span class="fc" id="L104">                temp.add(dList.get(i));</span>
+<span class="fc" id="L105">                dList.remove(i);</span>
+<span class="fc" id="L106">                resLen--;</span>
+<span class="fc" id="L107">                i--;</span>
+            }
+        }
+<span class="fc" id="L110">        return temp;</span>
+    }
+
+    public String getRollString() {
+<span class="fc" id="L114">        return (&quot;P&quot; + pid + &quot; You rolled &quot; + dList + &quot;.&quot;);</span>
+    }
+
+    public int getPDice() {
+<span class="fc" id="L118">        return dList.size();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

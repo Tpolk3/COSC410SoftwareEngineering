@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Die.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">Die.java</span></div><h1>Die.java</h1><pre class="source lang-java linenums">package pipboss;
+
+public class Die {
+    private boolean big;
+    private int value;
+    private int pid;
+    private java.util.Random prng;
+
+    //pid 0 is marked as not being a die owned by a player
+    public Die(int pid) {
+<span class="fc" id="L11">        this(pid, false, new java.util.Random());</span>
+<span class="fc" id="L12">    }</span>
+
+    public Die(int pid, boolean big) {
+<span class="fc" id="L15">        this(pid, big, new java.util.Random());</span>
+<span class="fc" id="L16">    }</span>
+
+    public Die(int pid, java.util.Random r) {
+<span class="fc" id="L19">        this(pid, false, r);</span>
+<span class="fc" id="L20">    }</span>
+
+<span class="fc" id="L22">    public Die(int pid, boolean big, java.util.Random r) {</span>
+<span class="fc" id="L23">        this.pid = pid;</span>
+<span class="fc" id="L24">        this.big = big;</span>
+<span class="fc" id="L25">        prng = r;</span>
+<span class="fc" id="L26">        roll();</span>
+<span class="fc" id="L27">    }</span>
+
+    public void roll() {
+<span class="fc" id="L30">        value = prng.nextInt(6) + 1;</span>
+<span class="fc" id="L31">    }</span>
+
+    public int getValue() {
+<span class="fc" id="L34">        return value;</span>
+    }
+    
+    public boolean isBig() {
+<span class="fc" id="L38">        return big;</span>
+    }
+
+    public int getPlayerId() {
+<span class="fc" id="L42">        return pid;</span>
+    }
+
+    public void setValue(int value) {
+<span class="fc" id="L46">        this.value = value;</span>
+<span class="fc" id="L47">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        return (big)? value + &quot;+&quot; + value : String.valueOf(value);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pipboss.AiControllerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-02-15T20:04:23" hostname="Tylers-MacBook-Pro.local" time="0.051">
+  <properties/>
+  <testcase name="testhideTiles()" classname="pipboss.AiControllerTest" time="0.023"/>
+  <testcase name="testgetfiftyfiftychoice()" classname="pipboss.AiControllerTest" time="0.001"/>
+  <testcase name="testguessTiles()" classname="pipboss.AiControllerTest" time="0.001"/>
+  <testcase name="testGetBlockItPileChoice()" classname="pipboss.AiControllerTest" time="0.001"/>
+  <testcase name="testGetPileChoice2()" classname="pipboss.AiControllerTest" time="0.001"/>
+  <testcase name="testGetDiceChoice()" classname="pipboss.AiControllerTest" time="0.02"/>
+  <testcase name="testGetPileChoice()" classname="pipboss.AiControllerTest" time="0.0"/>
+  <testcase name="testGetBlockItCasinoChoice()" classname="pipboss.AiControllerTest" time="0.0"/>
+  <testcase name="testBlackBoxPiles()" classname="pipboss.AiControllerTest" time="0.0"/>
+  <system-out><![CDATA[P1 rolled [1, 2, 3, 4, 5, 6, 2+2].
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

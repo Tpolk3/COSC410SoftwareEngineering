@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pipboss.PlayerTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2023-02-15T20:04:24" hostname="Tylers-MacBook-Pro.local" time="0.005">
+  <properties/>
+  <testcase name="testPlayDice()" classname="pipboss.PlayerTest" time="0.001"/>
+  <testcase name="testGetChips()" classname="pipboss.PlayerTest" time="0.0"/>
+  <testcase name="testGetMoney()" classname="pipboss.PlayerTest" time="0.001"/>
+  <testcase name="testIsAI()" classname="pipboss.PlayerTest" time="0.0"/>
+  <testcase name="testAddChips()" classname="pipboss.PlayerTest" time="0.001"/>
+  <testcase name="testgetRollString()" classname="pipboss.PlayerTest" time="0.0"/>
+  <testcase name="testUseChips()" classname="pipboss.PlayerTest" time="0.0"/>
+  <testcase name="testRollDice()" classname="pipboss.PlayerTest" time="0.0"/>
+  <testcase name="testGetPID()" classname="pipboss.PlayerTest" time="0.0"/>
+  <testcase name="testSetDice()" classname="pipboss.PlayerTest" time="0.0"/>
+  <testcase name="testDefaultConstructor()" classname="pipboss.PlayerTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

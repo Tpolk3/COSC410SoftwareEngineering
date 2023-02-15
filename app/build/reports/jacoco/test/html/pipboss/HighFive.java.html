@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HighFive.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">HighFive.java</span></div><h1>HighFive.java</h1><pre class="source lang-java linenums">package pipboss;
+
+import java.util.*;
+
+public class HighFive extends MiniGame{
+    private boolean prizeAvailable;
+
+<span class="fc" id="L8">    public HighFive(int i){</span>
+<span class="fc" id="L9">        associatedCasinoNum = i;</span>
+<span class="fc" id="L10">        prizeAvailable = true;</span>
+<span class="fc" id="L11">    }</span>
+
+    @Override
+    public void activate(Player p, Player p2, Controller c, Controller c2, List&lt;Casino&gt; casinos)  {
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        if(prizeAvailable)  {</span>
+<span class="fc" id="L16">            Casino curCasino = casinos.get(associatedCasinoNum-1);</span>
+<span class="fc" id="L17">            List&lt;Die&gt; casinoDice = curCasino.getDice();</span>
+<span class="fc" id="L18">            int count = 0;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">            for(int i=0; i&lt;casinoDice.size();i++)   {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">                if(casinoDice.get(i).getPlayerId() == p.getPID())   {</span>
+<span class="fc" id="L21">                    count++;</span>
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">                    if(casinoDice.get(i).isBig() == true)   {</span>
+<span class="nc" id="L23">                        count++;</span>
+                    }
+                }
+            }
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            if(count &gt;= 5)  {</span>
+<span class="fc" id="L28">                p.addMoney(10);</span>
+<span class="fc" id="L29">                prizeAvailable = false;</span>
+<span class="fc" id="L30">                c.printMiniGameText(&quot;P&quot; + p.getPID() + &quot; gained $10: High Five&quot;);</span>
+            }
+        }
+    
+        
+<span class="fc" id="L35">    }</span>
+
+    @Override
+    public String getName() {
+<span class="fc" id="L39">        return &quot;High Five&quot;;</span>
+    }
+
+    public void setPrizeAvaliblity(boolean prizeAvailable)  {
+<span class="fc" id="L43">        this.prizeAvailable = prizeAvailable;</span>
+<span class="fc" id="L44">    }</span>
+
+    @Override
+    public boolean equals(String s) {
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if(s.equals(&quot;High Five&quot;))  {</span>
+<span class="fc" id="L49">            return true;</span>
+        }
+<span class="fc" id="L51">        return false;</span>
+    }
+
+    @Override
+    public String toString()    {
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if(prizeAvailable)  {</span>
+<span class="fc" id="L57">            return &quot;High Five - The first player to place at least 5 dice here wins $10.&quot;;</span>
+        }
+<span class="fc" id="L59">        return &quot;High Five - The payout has already been claimed.&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

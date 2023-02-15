@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BlockIt.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">BlockIt.java</span></div><h1>BlockIt.java</h1><pre class="source lang-java linenums">package pipboss;
+
+import java.util.*;
+
+//import javax.lang.model.util.ElementScanner6;
+
+public class BlockIt extends MiniGame{
+    private List&lt;Integer&gt; remaining;
+
+<span class="fc" id="L10">    public BlockIt(int i){</span>
+<span class="fc" id="L11">        associatedCasinoNum = i;</span>
+<span class="fc" id="L12">        remaining = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc" id="L13">        remaining.add(1);</span>
+<span class="fc" id="L14">        remaining.add(1);</span>
+<span class="fc" id="L15">        remaining.add(2);</span>
+<span class="fc" id="L16">        remaining.add(2);</span>
+<span class="fc" id="L17">        remaining.add(3);</span>
+<span class="fc" id="L18">    }</span>
+
+    @Override
+    public void activate(Player p, Player p2, Controller c, Controller c2, List&lt;Casino&gt; casinos)  {
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">        if(remaining.size()&gt;0)  {</span>
+<span class="fc" id="L23">            int choice = c.getBlockItPileChoice();</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">            if(choice == 0) {</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">                for(int i=0; i&lt;remaining.size();i++)    {</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">                    if(remaining.get(i) == 1)   {</span>
+<span class="fc" id="L27">                        int choice2 = c.getBlockItCasinoChoice();</span>
+<span class="fc" id="L28">                        List&lt;Die&gt;  diceList = new ArrayList&lt;Die&gt;();</span>
+<span class="fc" id="L29">                        diceList.add(new Die(0));</span>
+<span class="fc" id="L30">                        diceList.get(0).setValue(choice2);</span>
+<span class="fc" id="L31">                        casinos.get(choice2-1).placeDie(diceList);</span>
+<span class="fc" id="L32">                        c.printMiniGameText(&quot;The minigame Block It at Casino &quot; + associatedCasino() </span>
+<span class="fc" id="L33">                            + &quot; has the following update: P&quot; + p.getPID() + &quot; has placed &quot; + remaining.get(i)</span>
+                            + &quot; Dice in casino &quot; + choice2 );
+<span class="fc" id="L35">                        remaining.remove(i);</span>
+<span class="fc" id="L36">                        i = remaining.size()+1;</span>
+                    }
+                }
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            } else if(choice == 1) {</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">                for(int i=0; i&lt;remaining.size();i++)    {</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                    if(remaining.get(i) == 2)   {</span>
+<span class="fc" id="L42">                        int choice2 = c.getBlockItCasinoChoice();</span>
+<span class="fc" id="L43">                        List&lt;Die&gt;  diceList = new ArrayList&lt;Die&gt;();</span>
+<span class="fc" id="L44">                        diceList.add(new Die(0));</span>
+<span class="fc" id="L45">                        diceList.add(new Die(0));</span>
+<span class="fc" id="L46">                        diceList.get(0).setValue(choice2);</span>
+<span class="fc" id="L47">                        diceList.get(1).setValue(choice2);</span>
+<span class="fc" id="L48">                        casinos.get(choice2-1).placeDie(diceList);</span>
+<span class="fc" id="L49">                        c.printMiniGameText(&quot;The minigame Block It at Casino &quot; + associatedCasino() </span>
+<span class="fc" id="L50">                            + &quot; has the following update: P&quot; + p.getPID() + &quot; has placed &quot; + remaining.get(i)</span>
+                            + &quot; Dice in casino &quot; + choice2 );
+<span class="fc" id="L52">                        remaining.remove(i);</span>
+<span class="fc" id="L53">                        i = remaining.size()+1;</span>
+                    }
+                }
+
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">            } else if(choice == 2){</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">                for(int i=0; i&lt;remaining.size();i++)    {</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">                    if(remaining.get(i) == 3)   {</span>
+<span class="fc" id="L60">                        int choice2 = c.getBlockItCasinoChoice();</span>
+<span class="fc" id="L61">                        List&lt;Die&gt;  diceList = new ArrayList&lt;Die&gt;();</span>
+<span class="fc" id="L62">                        diceList.add(new Die(0));</span>
+<span class="fc" id="L63">                        diceList.add(new Die(0));</span>
+<span class="fc" id="L64">                        diceList.add(new Die(0));</span>
+<span class="fc" id="L65">                        diceList.get(0).setValue(choice2);</span>
+<span class="fc" id="L66">                        diceList.get(1).setValue(choice2);</span>
+<span class="fc" id="L67">                        diceList.get(2).setValue(choice2);</span>
+<span class="fc" id="L68">                        casinos.get(choice2-1).placeDie(diceList);</span>
+<span class="fc" id="L69">                        c.printMiniGameText(&quot;The minigame Block It at Casino &quot; + associatedCasino() </span>
+<span class="fc" id="L70">                            + &quot; has the following update: P&quot; + p.getPID() + &quot; has placed &quot; + remaining.get(i)</span>
+                            + &quot; Dice in casino &quot; + choice2 );
+<span class="fc" id="L72">                        remaining.remove(i);</span>
+<span class="fc" id="L73">                        i = remaining.size()+1;</span>
+                    }
+                }
+            }
+        }
+<span class="fc" id="L78">    }</span>
+
+    @Override
+    public String getName() {
+<span class="fc" id="L82">        return &quot;Block It&quot;;</span>
+    }
+
+    @Override
+    public boolean equals(String s) {
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if(s.equals(&quot;Block It&quot;))  {</span>
+<span class="fc" id="L88">            return true;</span>
+        }
+<span class="fc" id="L90">        return false;</span>
+    }
+
+    @Override
+    public String toString()    {
+<span class="fc" id="L95">        return &quot;Block It - Play blank dice to any casino&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

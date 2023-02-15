@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Jackpot.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">Jackpot.java</span></div><h1>Jackpot.java</h1><pre class="source lang-java linenums">package pipboss;
+
+import java.util.*;
+
+public class Jackpot extends MiniGame{
+    private int[] jackPotList;
+    private int index, casinoNum;
+    private Random rng;
+
+<span class="fc" id="L10">    public Jackpot(int i, Random r){</span>
+<span class="fc" id="L11">        rng = r;</span>
+<span class="fc" id="L12">        associatedCasinoNum = i;</span>
+<span class="fc" id="L13">        jackPotList = new int[6];</span>
+<span class="fc" id="L14">        index = 0;</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        for(int j=0; j&lt;jackPotList.length; j++)   {</span>
+<span class="fc" id="L16">            jackPotList[j] = 3 + j;</span>
+        }
+<span class="fc" id="L18">    }</span>
+
+    public Jackpot(int i){
+<span class="fc" id="L21">        this(i, new Random());</span>
+<span class="fc" id="L22">    }</span>
+
+    @Override
+    public String getName() {
+<span class="fc" id="L26">        return &quot;Jackpot&quot;;</span>
+    }
+
+    @Override
+    public void activate(Player p, Player p2, Controller c, Controller c2, List&lt;Casino&gt; casinos)  {
+<span class="fc" id="L31">        Die dice1 = new Die(0, rng);</span>
+<span class="fc" id="L32">        Die dice2 = new Die(0, rng);</span>
+<span class="fc" id="L33">        dice1.roll();</span>
+<span class="fc" id="L34">        dice2.roll();</span>
+<span class="fc bfc" id="L35" title="All 4 branches covered.">        if(dice1.getValue()==dice2.getValue() || (dice1.getValue()+dice2.getValue()) == 7 ) {</span>
+<span class="fc" id="L36">            int winnings = jackPotList[index];</span>
+<span class="fc" id="L37">            p.addMoney(winnings);</span>
+<span class="fc" id="L38">            c.printMiniGameText( &quot;P&quot;+ p.getPID() + &quot; gained $&quot; + jackPotList[index] + </span>
+<span class="fc" id="L39">                &quot;: Jackpot ( [&quot; + dice1.getValue() + &quot;,&quot; +  dice2.getValue() + &quot;] -&gt; $&quot; + jackPotList[index] + &quot;).\n&quot; +</span>
+                &quot;The minigame Jackpot at Casino &quot;
+<span class="fc" id="L41">                + casinoNum + &quot; has the following update: [&quot; + dice1.getValue()</span>
+<span class="fc" id="L42">                + &quot;,&quot; + dice2.getValue() + &quot;] was rolled, and payout was $&quot; +</span>
+                winnings + &quot;. Potential payout is now $&quot; + jackPotList[0]+&quot;.&quot;);
+<span class="fc" id="L44">                index = 0;</span>
+<span class="fc" id="L45">        } else {</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            if(index &lt; 5)   {</span>
+<span class="fc" id="L47">                index++;</span>
+            }
+<span class="fc" id="L49">            c.printMiniGameText(&quot;The minigame Jackpot at Casino &quot;</span>
+<span class="fc" id="L50">                + casinoNum + &quot; has the following update: [&quot; + dice1.getValue()</span>
+<span class="fc" id="L51">                + &quot;,&quot; + dice2.getValue() + &quot;] was rolled. Potential payout is now $&quot; + jackPotList[index]+&quot;.&quot;);</span>
+        }
+
+<span class="fc" id="L54">    }</span>
+
+    public void setIndex(int index)  {
+<span class="fc" id="L57">        this.index = index;</span>
+<span class="fc" id="L58">    }</span>
+
+    public int getIndex()   {
+<span class="fc" id="L61">        return index;</span>
+    }
+
+    @Override
+    public boolean equals(String s) {
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if(s.equals(&quot;Jackpot&quot;))  {</span>
+<span class="fc" id="L67">            return true;</span>
+        }
+<span class="fc" id="L69">        return false;</span>
+    }
+
+    @Override
+    public String toString()    {
+<span class="fc" id="L74">        return &quot;Jackpot - Roll doubles or 7 to win $&quot; + jackPotList[index] + &quot;.&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

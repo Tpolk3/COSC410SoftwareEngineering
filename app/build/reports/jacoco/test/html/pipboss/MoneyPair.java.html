@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MoneyPair.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">MoneyPair.java</span></div><h1>MoneyPair.java</h1><pre class="source lang-java linenums">package pipboss;
+
+import java.util.*;
+
+public class MoneyPair {
+    private int highMoney;
+    private int lowMoney;
+    private Random rand;
+    
+<span class="fc" id="L10">    public MoneyPair(int highMoney, int lowMoney)  {</span>
+<span class="fc bfc" id="L11" title="All 2 branches covered.">        if (lowMoney &gt; highMoney) {</span>
+<span class="fc" id="L12">            int temp = highMoney;</span>
+<span class="fc" id="L13">            this.highMoney = lowMoney;</span>
+<span class="fc" id="L14">            this.lowMoney = temp;</span>
+<span class="fc" id="L15">        } else {</span>
+<span class="fc" id="L16">            this.lowMoney = lowMoney;</span>
+<span class="fc" id="L17">            this.highMoney = highMoney;</span>
+        }
+<span class="fc" id="L19">    }</span>
+
+    // public MoneyPair(Random r)  {
+    //    rand = r;
+    // }
+
+    public int getHighMoney()   {
+<span class="fc" id="L26">        return highMoney;</span>
+    }
+
+    public int getLowMoney()    {
+<span class="fc" id="L30">        return lowMoney;</span>
+    }
+
+    public int compareTo(MoneyPair mp)  {
+<span class="fc" id="L34">        int thisAdded = highMoney + lowMoney;</span>
+<span class="fc" id="L35">        int passedInAdded = mp.getHighMoney() + mp.getLowMoney();</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if(thisAdded - passedInAdded == 0)   {</span>
+<span class="fc" id="L37">            return highMoney - mp.getHighMoney();</span>
+        }
+<span class="fc" id="L39">        return thisAdded - passedInAdded;</span>
+    }
+
+    @Override
+    public String toString()    {
+<span class="fc" id="L44">        return &quot;(&quot;+highMoney+&quot;,&quot;+lowMoney+&quot;)&quot;;</span>
+        //String moneyString = &quot;High: &quot; + highMoney + &quot; Low: &quot; + lowMoney;
+
+        //return moneyString;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

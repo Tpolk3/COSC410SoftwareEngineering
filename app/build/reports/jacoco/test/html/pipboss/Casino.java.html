@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Casino.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">Casino.java</span></div><h1>Casino.java</h1><pre class="source lang-java linenums">package pipboss;
+import java.util.*;
+
+import javax.print.PrintException;
+
+public class Casino {
+    private int highMoney;
+    private int lowMoney;
+    private ArrayList&lt;Die&gt; dList;
+    private int casinoID;
+    private int playerNum;
+
+<span class="fc" id="L13">    public Casino(int highMoney, int lowMoney, int casinoID){</span>
+<span class="fc" id="L14">        dList = new ArrayList&lt;Die&gt;();</span>
+<span class="fc" id="L15">        this.highMoney = highMoney;</span>
+<span class="fc" id="L16">        this.lowMoney = lowMoney;</span>
+<span class="fc" id="L17">        this.casinoID = casinoID;</span>
+<span class="fc" id="L18">    }</span>
+
+    public int getPlayerNum() {
+<span class="fc" id="L21">        return playerNum;</span>
+    }
+
+    public void setPlayerNum(int n) {
+<span class="fc" id="L25">        playerNum = n;</span>
+<span class="fc" id="L26">    }</span>
+
+    public int getHighMoney()   {
+<span class="fc" id="L29">        return highMoney;</span>
+    }
+
+    public void setHighMoney(int hm)  {
+<span class="fc" id="L33">        highMoney = hm;</span>
+<span class="fc" id="L34">    }</span>
+
+    public void setLowMoney(int lm)  {
+<span class="fc" id="L37">        lowMoney = lm;</span>
+<span class="fc" id="L38">    }</span>
+
+    public int getLowMoney()   {
+<span class="fc" id="L41">        return lowMoney;</span>
+    }
+
+    public int getCasinoID()   {
+<span class="fc" id="L45">        return casinoID;</span>
+    }
+
+    public ArrayList&lt;Die&gt; getDice() {
+<span class="fc" id="L49">        return dList;</span>
+    }
+
+    public void placeDie(List&lt;Die&gt; d)  {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        for (int i = 0; i &lt; d.size(); i++) {</span>
+<span class="fc" id="L54">            dList.add(d.get(i));</span>
+        }
+<span class="fc" id="L56">    }</span>
+
+    private class Pair implements Comparable&lt;Pair&gt; {
+        private int pid;
+        private int count;
+
+<span class="fc" id="L62">        public Pair(int pid)   {</span>
+<span class="fc" id="L63">            this.pid = pid;</span>
+<span class="fc" id="L64">            count = 1;</span>
+<span class="fc" id="L65">        }</span>
+
+        public void increase()  {
+<span class="fc" id="L68">            count = count +1;</span>
+<span class="fc" id="L69">        }</span>
+
+        public int getCount()   {
+<span class="fc" id="L72">            return count;</span>
+        }
+
+        public int getPid() {
+<span class="fc" id="L76">            return pid;</span>
+        }
+        /*
+        @Override
+        public String toString()    {
+            return &quot;(&quot;+pid+&quot;,&quot;+count+&quot;)&quot;;
+        }
+        */
+
+        public int compareTo(Pair otherPair) {
+<span class="fc" id="L86">            return Integer.compare(getCount(), otherPair.getCount());</span>
+        }
+    
+    }
+
+    //returns -1 if no one is winning
+    public int getWinningPID()  {
+<span class="fc" id="L93">        ArrayList&lt;Pair&gt; pidList = createPidList();</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        for(int i=0; i&lt;pidList.size(); i++){</span>
+<span class="fc" id="L95">            boolean removeCon = false;</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">            for(int j=i+1; j&lt;pidList.size();j++) {</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">                if(pidList.get(i).getCount() == pidList.get(j).getCount())   {</span>
+<span class="fc" id="L98">                    pidList.remove(j);</span>
+<span class="fc" id="L99">                    j--;</span>
+<span class="fc" id="L100">                    removeCon = true;</span>
+                }
+            }
+<span class="fc bfc" id="L103" title="All 2 branches covered.">            if(removeCon)   {</span>
+<span class="fc" id="L104">                pidList.remove(i);</span>
+<span class="fc" id="L105">                i--;</span>
+            }
+        }
+
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (pidList.size() == 0) {</span>
+<span class="fc" id="L110">            return -1;</span>
+        }
+
+<span class="fc" id="L113">        Collections.sort(pidList, Collections.reverseOrder());</span>
+<span class="fc" id="L114">        return pidList.get(0).getPid();</span>
+    }
+
+    public int getWinningPID2()  {
+<span class="fc" id="L118">        ArrayList&lt;Pair&gt; pidList = createPidList();</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        for(int i=0; i&lt;pidList.size(); i++){</span>
+<span class="fc" id="L120">            boolean removeCon = false;</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">            for(int j=i+1; j&lt;pidList.size();j++) {</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">                if(pidList.get(i).getCount() == pidList.get(j).getCount())   {</span>
+<span class="fc" id="L123">                    pidList.remove(j);</span>
+<span class="fc" id="L124">                    j--;</span>
+<span class="fc" id="L125">                    removeCon = true;</span>
+                }
+            }
+<span class="fc bfc" id="L128" title="All 2 branches covered.">            if(removeCon)   {</span>
+<span class="fc" id="L129">                pidList.remove(i);</span>
+<span class="fc" id="L130">                i--;</span>
+<span class="fc" id="L131">                return -1;</span>
+            }
+        }
+
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if (pidList.size() &lt; 2) {</span>
+<span class="fc" id="L136">            return -1;</span>
+        }
+        
+<span class="fc" id="L139">        Collections.sort(pidList, Collections.reverseOrder());</span>
+
+<span class="fc" id="L141">        return pidList.get(1).getPid();</span>
+    }
+
+    private ArrayList&lt;Pair&gt; createPidArray() {
+<span class="fc" id="L145">        ArrayList&lt;Pair&gt; temp = new ArrayList&lt;Pair&gt;();</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        for(int i=0; i&lt;dList.size(); i++)    {</span>
+<span class="fc" id="L147">            boolean isPresent = false;</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">            for(int j=0; j&lt;temp.size(); j++) {</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">                if(temp.get(j).getPid() == dList.get(i).getPlayerId())  {</span>
+<span class="fc" id="L150">                    isPresent = true;</span>
+                }
+            }
+<span class="fc bfc" id="L153" title="All 2 branches covered.">            if(!isPresent)  {</span>
+<span class="fc" id="L154">                temp.add(new Pair(dList.get(i).getPlayerId()));</span>
+            }
+        }
+<span class="fc" id="L157">        return temp;</span>
+    }
+
+    private ArrayList&lt;Pair&gt; createPidList() {
+<span class="fc" id="L161">        ArrayList&lt;Pair&gt; pidList = createPidArray();</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        for(int i=0; i&lt;dList.size(); i++)    {</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">            for(int j=0; j&lt;pidList.size(); j++) {</span>
+<span class="fc bfc" id="L164" title="All 2 branches covered.">                if(pidList.get(j).getPid() == dList.get(i).getPlayerId())   {</span>
+<span class="fc" id="L165">                    pidList.get(j).increase();</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">                    if(dList.get(i).isBig())    {</span>
+<span class="fc" id="L167">                        pidList.get(j).increase();</span>
+                    }
+                }
+            }
+        }
+<span class="fc" id="L172">        return pidList;</span>
+    }
+
+    // if getwinningpid for casino &gt; -1, return $$ if not winning return $ if empty return &quot;&quot;;
+    public String countPlayerDie(int pid) {
+        // if dice in dList does not contain the pid, return empty string
+<span class="fc bfc" id="L178" title="All 2 branches covered.">        if (dList.size() == 0) {</span>
+<span class="fc" id="L179">            return &quot;   &quot;;</span>
+        }
+<span class="fc" id="L181">        int temp = 0;</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">        for(int i=0; i&lt;dList.size(); i++)   {</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">            if(dList.get(i).getPlayerId() == pid)   {</span>
+<span class="fc" id="L184">                temp++;</span>
+<span class="fc bfc" id="L185" title="All 2 branches covered.">                if(dList.get(i).isBig())    {</span>
+<span class="fc" id="L186">                    temp++;</span>
+                }
+            }
+        }
+<span class="fc bfc" id="L190" title="All 2 branches covered.">        if (temp == 0) {</span>
+<span class="fc" id="L191">            return &quot;   &quot;;</span>
+        }
+        //System.out.println(&quot;Winner: &quot; + getWinningPID() + &quot; at &quot; + casinoID);
+        //System.out.println(getWinningPID2());
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        if (getWinningPID() == pid) {</span>
+<span class="fc" id="L196">            return (&quot;$$&quot; + Integer.toString(temp));</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">        } else if (getWinningPID2() == pid) {</span>
+<span class="fc" id="L198">            return (&quot;$ &quot; + Integer.toString(temp));</span>
+        } else {
+<span class="fc" id="L200">            return (&quot;  &quot; + Integer.toString(temp));</span>
+        }
+    }
+
+    public Boolean isPresent(int pid)   {
+<span class="fc bfc" id="L205" title="All 2 branches covered.">        for(int i=0; i&lt;dList.size();i++)    {</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">            if(dList.get(i).getPlayerId() == pid)   {</span>
+<span class="fc" id="L207">                return true;</span>
+            }
+        }
+<span class="fc" id="L210">        return false;</span>
+    }
+
+    public String toString() {
+<span class="fc" id="L214">        String playCas = &quot;&quot;;</span>
+<span class="fc" id="L215">        Formatter playC = new Formatter();</span>
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">        for (int i = 1; i &lt;= playerNum; i++) {</span>
+<span class="nc" id="L217">            playCas += countPlayerDie(i) + &quot;  &quot;;</span>
+        }
+<span class="fc" id="L219">        playC.format(&quot;%-5s %2s %3s :  %2s%n&quot;,</span>
+<span class="fc" id="L220">        &quot; [&quot; + getCasinoID() + &quot;] &quot;, getHighMoney(), getLowMoney(), playCas);</span>
+<span class="fc" id="L221">        String retString = playC.toString();</span>
+<span class="fc" id="L222">        playC.close();</span>
+<span class="fc" id="L223">        return retString;</span>
+    }
+
+    public void removePlayerDice()  {
+<span class="fc" id="L227">        dList = new ArrayList&lt;Die&gt;();</span>
+<span class="fc" id="L228">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

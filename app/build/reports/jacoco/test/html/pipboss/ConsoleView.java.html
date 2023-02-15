@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConsoleView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">ConsoleView.java</span></div><h1>ConsoleView.java</h1><pre class="source lang-java linenums">package pipboss;
+
+import java.util.*;
+
+<span class="fc" id="L5">public class ConsoleView {</span>
+    
+    public void gameStarted(int rounds, int plys, int stdDice, int lrgDice, int chips)    {
+<span class="fc" id="L8">        System.out.println(&quot;The game has started. It will consist of &quot; + rounds + &quot; round(s) and has &quot; + plys + &quot; player.\n&quot;</span>
+            + &quot;Each player has &quot; + stdDice + &quot; regular and &quot; + lrgDice + &quot; large dice with &quot; + chips +&quot; chips per round.&quot;);
+        
+<span class="fc" id="L11">    }</span>
+
+    public void startRound(List&lt;Player&gt; players, List&lt;MiniGame&gt; miniGames, int chips, int rounds)   {
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        for(int i=0; i&lt;miniGames.size(); i++)    {</span>
+<span class="fc" id="L15">            System.out.println(&quot;Casino &quot; + miniGames.get(i).associatedCasino() + &quot; added the minigame &quot; + miniGames.get(i).getName() + &quot;.&quot;);</span>
+        }
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        for(int i=0; i&lt;players.size(); i++)   {</span>
+<span class="fc" id="L18">            System.out.println(&quot;P&quot; + players.get(i).getPID() + &quot; gained &quot; + chips + &quot; chips: Chips for Round &quot; + rounds + &quot;.&quot;);</span>
+        }
+
+<span class="fc" id="L21">        System.out.println(&quot;Round &quot; + rounds + &quot; has started.&quot;);</span>
+<span class="fc" id="L22">    }</span>
+
+    public void displayBoard(List&lt;Player&gt; players, List&lt;Casino&gt; casinos, List&lt;MiniGame&gt; miniGames) {
+<span class="fc" id="L25">        String header = &quot;----------------------------      PLAYERS      ----------------------------\n&quot;;</span>
+<span class="fc" id="L26">        String header2 = (&quot; player : money  dice  DICE  chips\n&quot;);</span>
+<span class="fc" id="L27">        String playString = &quot;&quot;;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            for(int i=0;i&lt;players.size();i++)    {</span>
+<span class="fc" id="L29">                playString += (players.get(i).toString());</span>
+            }
+<span class="fc" id="L31">        System.out.println(header + header2 + playString);</span>
+<span class="fc" id="L32">        header = (&quot;----------------------------      CASINOS      ----------------------------\n&quot;);</span>
+<span class="fc" id="L33">        String playerCas = &quot;&quot;;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (int i = 0; i &lt; players.size(); i++) {</span>
+<span class="fc" id="L35">            playerCas += (&quot;P&quot; + (i + 1) + &quot;   &quot;);</span>
+        }
+<span class="fc" id="L37">        header2 = (&quot;  #   $$   $     &quot; + playerCas+&quot;\n&quot;);</span>
+<span class="fc" id="L38">        String casString = &quot;&quot;;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            for(int i=0;i&lt;casinos.size();i++)    {</span>
+<span class="fc" id="L40">                casString += (casinos.get(i).toString());</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                for (int j = 0; j &lt; miniGames.size(); j++) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                    if (miniGames.get(j).associatedCasino() == casinos.get(i).getCasinoID()) {</span>
+<span class="fc" id="L43">                        casString += (&quot; &quot; + miniGames.get(j).toString()+&quot;\n&quot;);</span>
+                    }
+                }
+            }
+<span class="fc" id="L47">            System.out.println(header + header2 + casString);</span>
+<span class="fc" id="L48">    }</span>
+
+    public void roundEnd(List&lt;Player&gt; players,  List&lt;Controller&gt; c, List&lt;Casino&gt; casinos, List&lt;MiniGame&gt; miniGames, int round)  {
+<span class="fc" id="L51">        System.out.println(&quot;Round &quot; + round + &quot; has ended.&quot;);</span>
+<span class="fc" id="L52">        miniGamePayout(players, c, casinos, miniGames);</span>
+<span class="fc" id="L53">        ArrayList&lt;Integer&gt; winners1 = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc" id="L54">        ArrayList&lt;Integer&gt; winners2 = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        for (int i = 0; i &lt; casinos.size(); i++) {</span>
+<span class="fc" id="L56">            winners1.add(casinos.get(i).getWinningPID());</span>
+<span class="fc" id="L57">            winners2.add(casinos.get(i).getWinningPID2());</span>
+        }
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        for (int j = 0; j &lt; players.size(); j++) {</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            for (int i = 0; i &lt; winners1.size(); i++) {</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">                if (winners1.get(i) == players.get(j).getPID()) {</span>
+<span class="fc" id="L62">                    players.get(j).addMoney(casinos.get(i).getHighMoney());</span>
+
+<span class="fc" id="L64">                    System.out.println(&quot;P&quot; + players.get(j).getPID() + &quot; gained $&quot; + casinos.get(i).getHighMoney() +&quot;:&quot;</span>
+<span class="fc" id="L65">                    + &quot; from Casino &quot; + casinos.get(i).getCasinoID() + &quot; for Round &quot; + round + &quot;.&quot;);</span>
+                }
+<span class="fc bfc" id="L67" title="All 2 branches covered.">                if (winners2.get(i) == players.get(j).getPID()) {</span>
+<span class="fc" id="L68">                    players.get(j).addMoney(casinos.get(i).getLowMoney());</span>
+<span class="fc" id="L69">                    System.out.println(&quot;P&quot; + players.get(j).getPID() + &quot; gained $&quot; + casinos.get(i).getLowMoney() +&quot;:&quot;</span>
+<span class="fc" id="L70">                    + &quot; from Casino &quot; + casinos.get(i).getCasinoID() + &quot; for Round &quot;  + round + &quot;.&quot;);</span>
+                }
+            }
+        }
+<span class="fc" id="L74">    }</span>
+
+    private void miniGamePayout(List&lt;Player&gt; players, List&lt;Controller&gt; c, List&lt;Casino&gt; casinos, List&lt;MiniGame&gt; miniGames){
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        for(int i=0; i&lt;miniGames.size();i++)    {</span>
+<span class="fc" id="L78">            miniGames.get(i).payOut(players, c ,casinos);</span>
+        }
+<span class="fc" id="L80">    }</span>
+
+    public void endGame(List&lt;Player&gt; players, List&lt;Casino&gt; casinos, List&lt;MiniGame&gt; miniGames) {
+<span class="nc" id="L83">        System.out.println(&quot;The game is over. The final game state is below.&quot;);</span>
+<span class="nc" id="L84">        displayBoard(players, casinos, miniGames);</span>
+<span class="nc" id="L85">    }</span>
+
+    public void placeDice(Casino casino, List&lt;Die&gt; pDice)   {
+<span class="fc" id="L88">        casino.placeDie(pDice);</span>
+<span class="fc" id="L89">        System.out.println(&quot;P&quot; + pDice.get(0).getPlayerId() + &quot; placed &quot; + pDice + &quot;.&quot;);</span>
+<span class="fc" id="L90">        System.out.println(&quot;Casino &quot; + casino.getCasinoID() + &quot; gained &quot; + pDice + &quot; from P&quot; + pDice.get(0).getPlayerId() + &quot;.&quot;);</span>
+<span class="fc" id="L91">    }</span>
+
+    public void activateMiniGame(MiniGame miniGame, Player p, Player p2, Controller c, Controller c2, List&lt;Casino&gt; casinos)    {
+<span class="fc" id="L94">        miniGame.activate(p, p2, c, c2, casinos);</span>
+<span class="fc" id="L95">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

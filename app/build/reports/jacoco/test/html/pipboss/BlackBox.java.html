@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BlackBox.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">pipboss</a> &gt; <span class="el_source">BlackBox.java</span></div><h1>BlackBox.java</h1><pre class="source lang-java linenums">package pipboss;
+
+import java.util.*;
+
+//import javax.lang.model.util.ElementScanner6;
+
+public class BlackBox extends MiniGame{
+    private int[] tokens;
+
+
+<span class="fc" id="L11">    public BlackBox(int i){</span>
+<span class="fc" id="L12">        associatedCasinoNum = i;</span>
+<span class="fc" id="L13">        tokens = new int[6];</span>
+<span class="fc" id="L14">        tokens[0] = 0;</span>
+<span class="fc" id="L15">        tokens[1] = 0;</span>
+<span class="fc" id="L16">        tokens[2] = 0;</span>
+<span class="fc" id="L17">        tokens[3] = 2;</span>
+<span class="fc" id="L18">        tokens[4] = 2;</span>
+<span class="fc" id="L19">        tokens[5] = 6;</span>
+<span class="fc" id="L20">    }</span>
+
+    @Override
+    public void payOut(List&lt;Player&gt; players, List&lt;Controller&gt; c, List&lt;Casino&gt; casinos)  {
+<span class="fc" id="L24">        int winningPID = casinos.get(associatedCasinoNum-1).getWinningPID();</span>
+<span class="fc" id="L25">        boolean isWinner=false;</span>
+<span class="fc" id="L26">        Player winningPlayer=players.get(0);</span>
+<span class="fc" id="L27">        int winningPlayerIndex=0;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for(int i=0; i&lt;players.size();i++)  {</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">            if(winningPID == players.get(i).getPID())   {</span>
+<span class="fc" id="L30">                winningPlayer = players.get(i);</span>
+<span class="fc" id="L31">                winningPlayerIndex = i;</span>
+<span class="fc" id="L32">                isWinner = true;</span>
+            }
+        }
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if(isWinner)    {</span>
+<span class="fc" id="L36">            Player leftPlayer=players.get(0);</span>
+<span class="fc" id="L37">            int leftIndex = winningPlayerIndex+1;</span>
+            try{
+<span class="fc" id="L39">                leftPlayer = players.get(leftIndex);</span>
+<span class="nc" id="L40">            } catch(Exception e)    {</span>
+<span class="nc" id="L41">                leftPlayer = players.get(0);</span>
+<span class="nc" id="L42">                leftIndex = 0;</span>
+<span class="fc" id="L43">            }</span>
+<span class="fc" id="L44">            int leftCount = 0;</span>
+<span class="fc" id="L45">            int rightCount = 0;</span>
+<span class="fc" id="L46">            List&lt;Integer&gt; leftTemp = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc" id="L47">            List&lt;Integer&gt; rightTemp = new ArrayList&lt;Integer&gt;();</span>
+            
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            for(int i=0; i&lt;tokens.length;i++)   {</span>
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">                if(i == tokens.length-1 &amp;&amp; leftCount == 0)    {</span>
+<span class="fc" id="L51">                    leftTemp.add(tokens[i]);</span>
+<span class="pc bpc" id="L52" title="3 of 4 branches missed.">                } else if(i == tokens.length-1 &amp;&amp; rightCount == 0)    {</span>
+<span class="nc" id="L53">                    rightTemp.add(tokens[i]);</span>
+                } else {
+<span class="fc" id="L55">                    int pileChoice = c.get(leftIndex).getBlackboxPiles(tokens[i]);</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">                    if(pileChoice == 1) {</span>
+<span class="nc" id="L57">                        leftCount++;</span>
+<span class="nc" id="L58">                        leftTemp.add(tokens[i]);</span>
+                    } else {
+<span class="fc" id="L60">                        rightCount++;</span>
+<span class="fc" id="L61">                        rightTemp.add(tokens[i]);</span>
+                    }
+                }
+            }
+<span class="fc" id="L65">            String leftStr = pileToStr(leftTemp);</span>
+<span class="fc" id="L66">            String rightStr = pileToStr(rightTemp);</span>
+
+<span class="fc" id="L68">            int pileChoice = c.get(winningPlayerIndex).getPileChoice(leftTemp.size(), rightTemp.size());</span>
+<span class="fc" id="L69">            int count = 0;</span>
+<span class="fc" id="L70">            String chossenString = &quot;&quot;;</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">            if(pileChoice == 1) {</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">                for(int i=0; i&lt;leftTemp.size();i++) {</span>
+<span class="fc" id="L73">                    count = count +leftTemp.get(i);</span>
+                }
+<span class="fc" id="L75">                players.get(winningPlayerIndex).addMoney(count);</span>
+<span class="fc" id="L76">                chossenString = leftStr;</span>
+                
+                
+            } else  {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">                for(int i=0; i&lt;leftTemp.size();i++) {</span>
+<span class="fc" id="L81">                    count = count +leftTemp.get(i);</span>
+                }
+<span class="fc" id="L83">                players.get(winningPlayerIndex).addMoney(count);</span>
+<span class="fc" id="L84">                chossenString = rightStr;</span>
+            }
+<span class="fc" id="L86">            c.get(winningPlayerIndex).printMiniGameText(&quot;P&quot; +winningPlayer.getPID()</span>
+                + &quot; gained $&quot;+count+&quot;: Black Box (chose &quot; + chossenString + &quot; out of &quot; + leftStr +&quot;|&quot; + rightStr + &quot;).&quot;);
+
+<span class="fc" id="L89">            c.get(winningPlayerIndex).printMiniGameText(&quot;The minigame Black Box at Casino &quot; +associatedCasinoNum +</span>
+<span class="fc" id="L90">                &quot; has the following update: P&quot; + leftPlayer.getPID() + &quot; split as &quot; + leftStr +&quot;|&quot; + rightStr +</span>
+<span class="fc" id="L91">                &quot; and P&quot; + winningPlayer.getPID() + &quot; chose &quot; + chossenString + &quot;.&quot;);</span>
+
+        }
+<span class="fc" id="L94">    }       </span>
+
+    private String pileToStr(List&lt;Integer&gt; pile)  {
+<span class="fc" id="L97">        String retString = &quot;&quot;;</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        for(int i=0; i&lt;pile.size();i++) {</span>
+<span class="fc" id="L99">            retString = retString + Integer.toString(pile.get(i));</span>
+        }
+<span class="fc" id="L101">        return retString;</span>
+    }
+
+    @Override
+    public String getName() {
+<span class="fc" id="L106">        return &quot;Black Box&quot;;</span>
+    }
+
+    @Override
+    public boolean equals(String s) {
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if(s.equals(&quot;Black Box&quot;))  {</span>
+<span class="fc" id="L112">            return true;</span>
+        }
+<span class="fc" id="L114">        return false;</span>
+    }
+
+    @Override
+    public String toString()    {
+<span class="fc" id="L119">        return &quot;Black Box - During payout, the winner plays a split/choose for additional.&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

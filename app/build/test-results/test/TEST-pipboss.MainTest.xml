@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pipboss.MainTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-02-15T20:04:24" hostname="Tylers-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="testSetUp()" classname="pipboss.MainTest" time="0.001"/>
+  <testcase name="testResetRound()" classname="pipboss.MainTest" time="0.001"/>
+  <system-out><![CDATA[The game has started. It will consist of 3 round(s) and has 3 player.
+Each player has 7 regular and 1 large dice with 2 chips per round.
+The game has started. It will consist of 3 round(s) and has 3 player.
+Each player has 7 regular and 1 large dice with 2 chips per round.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
